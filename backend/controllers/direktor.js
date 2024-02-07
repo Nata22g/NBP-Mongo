@@ -28,7 +28,7 @@ export const azurirajNalogDirektor = async (req, res) => { //email i tel
                 $set: { email: req.body.email,
                         telefon: req.body.telefon},
                 });
-                res.status(200).json("Nalog je ažuriran!");
+                return res.status(200).json("Nalog je ažuriran!");
             }
             catch (err) 
             {
