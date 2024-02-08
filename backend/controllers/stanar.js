@@ -17,7 +17,13 @@ export const dodajStanara = async(req, res)=>{
     {
         //const salt = await bcrypt.genSalt(10);
         //const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const zgrada = await Zgrada.findOne({lokacija: req.body.zgrada})
 
+        // i ne treba ovo al neka ga
+        if( req.body.brStana > zgrada.brStanova){
+            return res.status(400).json("Broj stanova u zgradi je " + zgrada.brStanova)
+        }
+        
         const check = await Stanar.find({ username: req.body.username});
         if (check.length == 0){
 
@@ -42,7 +48,6 @@ export const dodajStanara = async(req, res)=>{
 
             const noviStanar = await stanar.save();
             //console.log(noviStanar)
-            const zgrada = await Zgrada.findOne({lokacija: req.body.zgrada})
             //console.log(zgrada)
             await Stanar.findByIdAndUpdate(noviStanar._id, {upravnikId: zgrada.upravnikId})
 
