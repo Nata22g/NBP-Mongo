@@ -7,7 +7,6 @@ import Zgrada from "../models/Zgrada.js"
 import Kvar from "../models/Kvar.js"
 import RegistrovaniKorisnik from "../models/RegistrovaniKorisnik.js"
 import Obavestenje from "../models/Obavestenje.js"
-import Anketa from "../models/Anketa.js"
 import { generateAccessToken } from "../auth.js";
 import { generateRefreshToken } from "../auth.js";
 

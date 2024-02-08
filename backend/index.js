@@ -5,18 +5,14 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
 
-// import authRoute from "./routes/auth.js";
-// import registrovaniKorisnikRoute from "./routes/registrovaniKorisnik.js";
-// import saradnikRoute from "./routes/saradnik.js";
-// import stanarRoute  from "./routes/stanar.js";
-// import upravnikRoute  from "./routes/upravnik.js";
-// import direktorRoute from"./routes/direktor.js";
-// import obavestenjeRoute from "./routes/obavestenje.js";
-// import kvarRoute from "./routes/kvar.js";
-// import racunRoute from "./routes/racun.js";
-// import zgradaRoute from "./routes/zgrada.js";
-// import anketaRoute from "./routes/anketa.js";
-// import glasRoute from "./routes/glas.js"
+import authRoute from "./routes/auth.js";
+import registrovaniKorisnikRoute from "./routes/registrovaniKorisnik.js";
+import stanarRoute  from "./routes/stanar.js";
+import upravnikRoute  from "./routes/upravnik.js";
+import direktorRoute from"./routes/direktor.js";
+import obavestenjeRoute from "./routes/obavestenje.js";
+import kvarRoute from "./routes/kvar.js";
+import zgradaRoute from "./routes/zgrada.js";
 
 dotenv.config();
 
@@ -39,18 +35,14 @@ app.use((req, res, next)=>{
     return next();
 })
 
-// app.use("/api/auth", authRoute);
-// app.use("/api/registrovaniKorisnik", registrovaniKorisnikRoute);
-// app.use("/api/direktor", direktorRoute);
-// app.use("/api/stanar", stanarRoute);
-// app.use("/api/upravnik", upravnikRoute);
-// app.use("/api/saradnik", saradnikRoute);
-// app.use("/api/obavestenje", obavestenjeRoute);
-// app.use("/api/kvar", kvarRoute);
-// app.use("/api/racun", racunRoute);
-// app.use("/api/zgrada", zgradaRoute);
-// app.use("/api/anketa", anketaRoute);
-// app.use("/api/glas", glasRoute)
+app.use("/api/auth", authRoute);
+app.use("/api/registrovaniKorisnik", registrovaniKorisnikRoute);
+app.use("/api/direktor", direktorRoute);
+app.use("/api/stanar", stanarRoute);
+app.use("/api/upravnik", upravnikRoute);
+app.use("/api/obavestenje", obavestenjeRoute);
+app.use("/api/kvar", kvarRoute);
+app.use("/api/zgrada", zgradaRoute);
 
 app.listen("8080", ()=>{
     console.log("backend server is running");

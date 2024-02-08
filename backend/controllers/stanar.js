@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 import Upravnik from "../models/Upravnik.js"
 import Stanar from "../models/Stanar.js"
-import Saradnik from "../models/Saradnik.js"
 import Direktor from "../models/Direktor.js"
 import Kvar from "../models/Kvar.js"
 import RegistrovaniKorisnik from "../models/RegistrovaniKorisnik.js"

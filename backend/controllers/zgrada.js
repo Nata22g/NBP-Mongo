@@ -11,6 +11,7 @@ export const dodajZgradu = async(req, res)=>{
     try
     {
         const check = await Zgrada.find({lokacija: req.body.lokacija} );
+        console.log(check)
         if(check.length == 0)
         {
             const zgr = new Zgrada({
@@ -19,7 +20,7 @@ export const dodajZgradu = async(req, res)=>{
                 upravnikId: req.params.id,
                 //slika: req.body.lokacija + ".jpg"
             })
-    
+            console.log(zgr)
             const zgrSave= await zgr.save();
             return res.status(200).json("Uspešno ste dodali zgradu");
         }

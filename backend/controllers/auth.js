@@ -1,14 +1,10 @@
-//const router = require("express").Router();
-//const bcrypt = require("bcrypt");
 import express from "express";
 const router = express.Router();
-import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import RegistrovaniKorisnik from "../models/RegistrovaniKorisnik.js";
 import Stanar from "../models/Stanar.js";
 import Upravnik from "../models/Upravnik.js";
 import Direktor from "../models/Direktor.js";
-import Saradnik from "../models/Saradnik.js";
 import { generateAccessToken } from "../auth.js";
 import { generateRefreshToken } from "../auth.js";
 
@@ -19,7 +15,7 @@ export const login = async (req, res) => {
         if (!user) {
             return res.status(404).json("Nema korisnika sa tim username-om");
         }
-
+        //console.log(user.tipKorisnika)
         //const validPassword = await bcrypt.compare(req.body.password, user.password)
         //!validPassword
 
@@ -87,7 +83,7 @@ export const login = async (req, res) => {
         }
         else if (user.tipKorisnika == "Direktor") {
             const direktor = await Direktor.findOne({ registrovaniKorisnikId: user._id });
-            console.log("direktor je")
+            //console.log("direktor je")
             if (direktor != null) {
                 const token = generateAccessToken(direktor.registrovaniKorisnikId)
                 const refreshToken = generateRefreshToken(direktor.registrovaniKorisnikId)
@@ -106,7 +102,7 @@ export const login = async (req, res) => {
                     token: token,
                     refreshToken: refreshToken
                 }
-                console.log("dobro je")
+                //console.log("dobro je")
                 return res.status(200).json(novi)
             }
             else {

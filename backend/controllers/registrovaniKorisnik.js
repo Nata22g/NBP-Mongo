@@ -4,14 +4,13 @@
 
 import express from "express";
 const router = express.Router();
-import bcrypt from "bcrypt";
 import RegistrovaniKorisnik from "../models/RegistrovaniKorisnik.js";
 
 //update your acc
 export const azurirajNalogRegKor = async (req, res, next) => {
 
     if (req.body.registrovaniKorisnikId == req.params.id) {
-        const regKor = await RegistrovaniKorisnik.findById( req.params.id);
+        const regKor = await RegistrovaniKorisnik.findById(req.params.id);
         if (req.body.password == regKor.password) 
         {
             try 
@@ -30,7 +29,10 @@ export const azurirajNalogRegKor = async (req, res, next) => {
                 const user = await RegistrovaniKorisnik.findByIdAndUpdate(req.params.id, {
                                                                         $set: { ime: req.body. ime,
                                                                                 prezime: req.body.prezime }});
+                                                                                
+                console.log("id: " + req.params.id + "body " + req.body.registrovaniKorisnikId)
                 return next();
+                // return res.status(200).json("Uspešno ažuriran profil")
             }
             catch (err) 
             {
