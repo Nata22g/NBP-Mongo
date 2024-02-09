@@ -7,10 +7,6 @@ const StanarSchema = new mongoose.Schema({
     }, brStana: {
         type: Number,
 
-    }, dugovanje: {
-        type: Number,
-        default: 0,
-
     }, zgrada: {
         type: String    //lokacija
 

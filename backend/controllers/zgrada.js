@@ -36,7 +36,6 @@ export const dodajZgradu = async(req, res)=>{
     }
 }  
 
-//prikaži stanare
 export const prikaziSveStanareZgrade = async(req, res)=>{
     try
     {
@@ -78,7 +77,6 @@ export const prikaziSveStanareZgrade = async(req, res)=>{
     }
 }
 
-//pregled zgrada
 export const prikaziZgradeUpravnika = async(req, res)=>{
     try
     {

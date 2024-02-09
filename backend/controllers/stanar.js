@@ -10,6 +10,15 @@ import Zgrada from "../models/Zgrada.js";
 export const dodajStanara = async(req, res)=>{
     try
     {
+        //const salt = await bcrypt.genSalt(10);
+        //const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const zgrada = await Zgrada.findOne({lokacija: req.body.zgrada})
+
+        // i ne treba ovo al neka ga
+        if( req.body.brStana > zgrada.brStanova){
+            return res.status(400).json("Broj stanova u zgradi je " + zgrada.brStanova)
+        }
+        
         const check = await Stanar.find({ username: req.body.username});
         if (check.length == 0){
 
@@ -34,7 +43,6 @@ export const dodajStanara = async(req, res)=>{
 
             const noviStanar = await stanar.save();
             //console.log(noviStanar)
-            const zgrada = await Zgrada.findOne({lokacija: req.body.zgrada})
             //console.log(zgrada)
             await Stanar.findByIdAndUpdate(noviStanar._id, {upravnikId: zgrada.upravnikId})
 
@@ -127,55 +135,5 @@ export const obrisiStanara = async (req, res) => {
         return res.status(500).json(err);
     }
 };
-
-export const uplatiDugovanje = async(req, res) => {
-    try
-    {
-        let stanar = await Stanar.findById(req.params.id)
-        
-        stanar.dugovanje = stanar.dugovanje - req.body.uplata;
-        stanar.save();
-        return res.status(200).json("Uspešno plaćen račun!")
-    }
-    catch (err) {
-        return res.status(500).json(err);
-    }
-}
-
-export const pregledDugovanja = async(req, res) => {
-    try
-    {
-        const zgr = await Zgrada.findById(req.params.id);
-        const stanari = await Stanar.find({'zgrada': zgr.lokacija});
-
-        if (stanari.length != 0) 
-        {
-            let vrati = []
-            for (let i = 0; i < stanari.length; i++) 
-            {
-                let regKorisnik = await RegistrovaniKorisnik.findById(stanari[i].registrovaniKorisnikId)
-                if(regKorisnik!=null)
-                {
-                    let stanar = 
-                    {
-                        stanar: regKorisnik.ime + " "+ regKorisnik.prezime,
-                        brStana: stanari[i].brStana,
-                        dugovanje: stanari[i].dugovanje
-                        
-                    }
-                    vrati.push(stanar)
-                }
-            }
-            return res.status(200).json(vrati)
-        }
-        else 
-        { 
-            return res.status(404).json("Nema stanara u ovoj zgradi"); 
-        }
-    }
-    catch (err) {
-        return res.status(500).json(err);
-    }
-}
 
 export default router;

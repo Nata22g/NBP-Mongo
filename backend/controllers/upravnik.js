@@ -111,11 +111,10 @@ export const obrisiUpravnika = async(req, res) =>
         const upravnik=await Upravnik.findById(req.params.idUpr)
         if(upravnik != null)
         {
-            //res.status(200).json(upravnik)
+            //return res.status(200).json(upravnik)
             let zgrade = await Zgrada.find({upravnikId: upravnik._id})
             let kvarovi = await Kvar.find({upravnikId: upravnik._id})
             let obavestenja = await Obavestenje.find({autorId: upravnik._id})
-            let ankete = await Anketa.find({upravnikId: upravnik._id})
             let stanari = [];
             //console.log(zgrade);
             if(zgrade.length > 0)
@@ -156,13 +155,7 @@ export const obrisiUpravnika = async(req, res) =>
                     await Obavestenje.findByIdAndDelete(obavestenja[i]._id)
                 }
             }
-            if(ankete.length > 0)
-            {
-                for(let i = 0; i < ankete.length; i++)
-                {
-                    await Anketa.findByIdAndDelete(ankete[i]._id)
-                }
-            }
+
             await Direktor.findByIdAndUpdate(upravnik.direktorId, {$pull: {upravnici: { _id: upravnik._id} }});
             await RegistrovaniKorisnik.findByIdAndDelete(upravnik.registrovaniKorisnikId)
             await Upravnik.findByIdAndDelete(upravnik._id)
@@ -223,49 +216,6 @@ export const azurirajNalogUpravnik = async (req, res) => {
     }
     catch(err)
     {
-        return res.status(500).json(err);
-    }
-}
-
-export const naplatiDugovanjeStanarima = async(req, res)=>{
-    try
-    {
-        
-        const zgrada = await Zgrada.findById(req.params.zgradaId);
-
-        if(zgrada.stanari.length != 0)
-        {
-            let stanar;
-            for(let i = 0; i < zgrada.stanari.length; i++)
-            {
-                stanar = await Stanar.findById(zgrada.stanari[i]._id);
-                stanar.dugovanje = stanar.dugovanje + stanar.brojUkucana * req.body.racun;
-                stanar.save();
-            }
-            return res.status(200).json("Naplaćeno");
-        }
-        else
-        {
-            return res.status(404).json("Nema stanara u odabranoj zgradi");
-        }
-        
-        // let stanari = await Stanar.find( {where: { zgrada: zgrada.lokacija }} );
-
-        // if (stanari.length != 0)
-        // {
-        //     for (let i=0; i < stanari.length; i++)
-        //     {
-        //         stanari[i]. dugovanje= (stanari[i].dugovanje + req.body.racun);
-        //     }
-        //     return res.status(200).json("Naplaćeno")
-        // }
-        // else
-        // {
-        //     return res.status(500).json("Nema stanara u odabranoj zgradi");
-
-        // }
-    }
-    catch (err) {
         return res.status(500).json(err);
     }
 }

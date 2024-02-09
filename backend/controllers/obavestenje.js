@@ -8,8 +8,6 @@ import Upravnik from "../models/Upravnik.js";
 import Zgrada from "../models/Zgrada.js";
 
 
-//dodaj obaveštenje
-
 export const dodajObavestenjeUpravnik = async(req, res)=> {
     try
     {
