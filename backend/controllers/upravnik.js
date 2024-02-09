@@ -220,31 +220,4 @@ export const azurirajNalogUpravnik = async (req, res) => {
     }
 }
 
-export const naplatiDugovanjeStanarima = async(req, res)=>{
-    try
-    {
-        
-        const zgrada = await Zgrada.findById(req.params.zgradaId);
-
-        if(zgrada.stanari.length != 0)
-        {
-            let stanar;
-            for(let i = 0; i < zgrada.stanari.length; i++)
-            {
-                stanar = await Stanar.findById(zgrada.stanari[i]._id);
-                stanar.dugovanje = stanar.dugovanje + stanar.brojUkucana * req.body.racun;
-                stanar.save();
-            }
-            return res.status(200).json("Naplaćeno");
-        }
-        else
-        {
-            return res.status(404).json("Nema stanara u odabranoj zgradi");
-        }
-    }
-    catch (err) {
-        return res.status(500).json(err);
-    }
-}
-
 export default router;
