@@ -7,17 +7,9 @@ import Kvar from "../models/Kvar.js"
 import RegistrovaniKorisnik from "../models/RegistrovaniKorisnik.js"
 import Zgrada from "../models/Zgrada.js";
 
-import registrovaniKorisnik, { azurirajNalogRegKor } from "../controllers/registrovaniKorisnik.js" //sta ce nam ovo?
-
-import { generateAccessToken } from "../auth.js"; //ni ova dva nam ne trebaju
-import { generateRefreshToken } from "../auth.js";
-
 export const dodajStanara = async(req, res)=>{
     try
     {
-        //const salt = await bcrypt.genSalt(10);
-        //const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
         const check = await Stanar.find({ username: req.body.username});
         if (check.length == 0){
 
@@ -65,28 +57,16 @@ export const dodajStanara = async(req, res)=>{
     }
 }
 
-//izmeni podatke
 export const azurirajNalogStanar = async (req, res) => {
     if (req.body.registrovaniKorisnikId == req.params.id) {
         const regKor = await RegistrovaniKorisnik.findById(req.params.id)
         if(req.body.password == regKor.password)
         {
-          // if (req.body.password) {
-          //   try 
-          //   {
-          //     const salt = await bcrypt.genSalt(10);
-          //     req.body.password = await bcrypt.hash(req.body.password, salt);
-          //   }
-          //   catch (err) 
-          //   {
-          //     return res.status(500).json(err);
-          //   }
-          // }
             try 
             {
                 const stan = await Stanar.findOne({registrovaniKorisnikId: req.params.id})
                 const user = await Stanar.findByIdAndUpdate(stan._id, {
-                $set: { brojUkucana: req.body.brojUkucana }
+                    $set: { brojUkucana: req.body.brojUkucana }
                 });
                 res.status(200).json("Nalog je ažuriran!");
             }
@@ -104,13 +84,9 @@ export const azurirajNalogStanar = async (req, res) => {
     }
 }
 
-//upravnik briše stanara
 export const obrisiStanara = async (req, res) => {
 
     try {
-
-        //const upravnik = await RegistrovaniKorisnik.findById(req.params.upravnikId)
-
         const stanar = await Stanar.findById(req.params.id)
         if (stanar != null) 
         {
@@ -141,9 +117,6 @@ export const obrisiStanara = async (req, res) => {
             await Stanar.findByIdAndDelete(stanar._id)
             
             return res.status(200).json("Uspešno obrisan stanar");
-
-            //}
-            //else { return res.status(400).json("Ovaj stanar nije u vašoj nadležnosti");}
 
         }
         else {
