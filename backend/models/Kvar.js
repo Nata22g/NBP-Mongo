@@ -21,7 +21,7 @@ const KvarSchema = new mongoose.Schema({
 
     }, status:{
         type: String,
-        enum: ["Prijavljen", "Prosleđen direktoru", "Popravka je u toku", "Odbijen", "Završen"]
+        enum: ["Prijavljen", "Prosleđen direktoru", "Odbijen", "Završen"]
 
     }, zgradaLokacija: {
         type: String
