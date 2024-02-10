@@ -1,0 +1,44 @@
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .copy-right {
+    color: #777;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .instagram-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+  }
+  
+  .contact-info:not(:last-child) {
+    margin-right: 30px;
+  }
+  
