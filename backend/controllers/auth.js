@@ -191,7 +191,7 @@ export const refresh = async (req, res) => {
   }
 };
 
-export const vratiKorisnikaPrekoTokena = async (req, res) => {    //zakomentarisan je kveri za upravnika
+export const vratiKorisnikaPrekoTokena = async (req, res) => {   
     try {
         //Vadimo token iz header-a zahteva:
         if (req.headers.authorization) {
