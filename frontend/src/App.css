@@ -1,0 +1,355 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: antiquewhite;
+
+}
+
+.App-link {
+  color: #389f44;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#toggle {
+  border: 0;
+
+}
+
+.input {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.tekst {
+  margin-top: 1px;
+  margin-bottom: 2px;
+  font-weight: 400;
+  font-size: larger;
+}
+
+.dodaj-deo {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.dodaj-item {
+  flex-basis: 0;
+  flex: 1 1;
+}
+
+.upozorenja {
+  color: #c77979;
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+::placeholder {
+  font-style: italic;
+  text-align: center;
+}
+
+
+
+/*.pozadina-dodaj {
+  background: rgb(33, 36, 41);
+  background: radial-gradient(circle,
+      #717c8e 20%,
+      #5b6371 0%,
+      rgb(33, 36, 41) 110%)
+}*/
+
+
+
+.Dodaj {
+  height: 100vh;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+
+}
+
+.Dodaj>form {
+  /* width: 30%;
+  height: 60%;*/
+  margin: 10%;
+  padding: 5%;
+  border-radius: 5px;
+  background: rgb(255, 255, 250);
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.forma {
+  padding: 20px;
+}
+
+.dugme {
+  background-color: rgb(33, 36, 41);
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 8px 17px;
+  text-decoration: none;
+  margin: 4px 5px;
+  cursor: pointer;
+}
+
+.zeleno-dugme {
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 8px 17px;
+  text-decoration: none;
+  margin: 4px 5px;
+  cursor: pointer;
+}
+
+.okvir {
+  padding-top: 10px;
+}
+
+#kvarovi {
+  border-radius: 7px;
+  padding: 3%;
+  background: rgb(33, 36, 41);
+  background: radial-gradient(circle,
+      #979da9 0%,
+      #b7b7b7 0%,
+      rgb(81, 84, 89) 100%)
+}
+
+/* #kvarovi {
+  position: back
+  border-radius: 7px;
+  padding: 3%;
+  background: radial-gradient(circle, #979da9 0%, #b7b7b7 0%, rgb(81, 84, 89) 100%),
+              url("./Assets/tools2.jpg") center/cover no-repeat;
+} */
+
+
+.kvar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.kvar-item {
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kvar-subitem {
+  flex-basis: 0;
+  flex: 1 1;
+}
+
+
+.belina {
+  margin: 10%;
+  padding: 5%;
+  border-radius: 5px;
+  background: rgb(255, 255, 250);
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.pretraga {
+  margin-bottom: 15px;
+  margin-left: 13%;
+
+}
+
+.pretraga-dir{
+  margin-top: 20px;
+  margin-left: 0%;
+}
+
+#notes {
+  border-radius: 0%;
+  padding: 3%;
+  background: rgb(33, 36, 41);
+  background: white
+}
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  border-radius: 0%;
+}
+
+.notes-item {
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;  
+  background-color: pink;
+}
+
+.notes-subitem {
+  flex-basis: 0;
+  flex: 1 1;
+  background-color: pink;
+}
+
+
+
+.content-card {
+  margin-top: 30px;
+  
+ 
+}
+
+.card .title, .card .description, .card .category{
+  color: #FFFFFF;
+}
+
+.card-just-text {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  background-color: #FFFFFF;
+  color: #252422;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  align-self: center;
+}
+
+.card .category, .card .label {
+  font-size: 14px;
+  margin-bottom: 0;
+
+}
+
+.card .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  font-style: normal;
+ 
+ 
+}
+
+.card .description {
+  font-size: 16px;
+  color: #66615b;
+  
+}
+
+.card[data-color="blue"] {
+  background-color: #b8d8d8;
+}
+
+.card[data-color="blue"] .description {
+  color: #506568;
+}
+
+.card[data-color="blue"] .category {
+  color: #4ea2af;
+}
+
+.card[data-color="green"] {
+  background-color: #d5e5a3;
+}
+
+.card[data-color="green"] .description {
+  color: #60773d;
+}
+
+.card[data-color="green"] .category {
+  color: #92ac56;
+}
+
+.card[data-color="yellow"] {
+  background-color: #ffe28c;
+}
+
+.card[data-color="yellow"] .description {
+  color: #b25825;
+}
+
+.card[data-color="yellow"] .category {
+  color: #d88715;
+}
+
+.card[data-color="brown"] {
+  background-color: #d6c1ab;
+}
+
+.card[data-color="brown"] .description {
+  color: #75442e;
+}
+
+.card[data-color="brown"] .category {
+  color: #a47e65;
+}
+.card[data-color="pink"] {
+  background-color: #e0aacf;
+}
+
+.card[data-color="pink"] .description {
+  color: #d742a8;
+}
+
+.card[data-color="pink"] .category {
+  color: #891665;
+}
+.card[data-color="purple"] {
+  background-color: #baa9ba;
+}
+
+.card[data-color="purple"] .description {
+  color: #3a283d;
+}
+
+.card[data-color="purple"] .category {
+  color: #5a283d;
+}
+
+.card[data-color="orange"] {
+  background-color: #ff8f5e;
+}
+
+.card[data-color="orange"] .description {
+  color: #772510;
+}
+
+.card[data-color="orange"] .category {
+  color: #f14515;
+}
+
+
+.card[data-radius="none"] {
+  border-radius: 0px;
+  border: transparent;
+}
