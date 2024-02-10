@@ -10,18 +10,10 @@ import Zgrada from "../models/Zgrada.js";
 export const dodajStanara = async(req, res)=>{
     try
     {
-        //const salt = await bcrypt.genSalt(10);
-        //const hashedPassword = await bcrypt.hash(req.body.password, salt);
         const zgrada = await Zgrada.findOne({lokacija: req.body.zgrada})
-
-        // i ne treba ovo al neka ga
-        if( req.body.brStana > zgrada.brStanova){
-            return res.status(400).json("Broj stanova u zgradi je " + zgrada.brStanova)
-        }
         
         const check = await Stanar.find({ username: req.body.username});
         if (check.length == 0){
-
 
             const kor = new RegistrovaniKorisnik({
                 ime: req.body.ime,
@@ -37,8 +29,7 @@ export const dodajStanara = async(req, res)=>{
                 registrovaniKorisnikId: user._id,
                 brStana: req.body.brStana,
                 zgrada: req.body.zgrada,
-                brojUkucana: req.body.brojUkucana,
-                //upravnikId: req.params.id  //ne ovako
+                brojUkucana: req.body.brojUkucana
             })
 
             const noviStanar = await stanar.save();

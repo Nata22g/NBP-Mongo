@@ -216,11 +216,26 @@ export const proslediKvarDirektoru = async (req, res)=> {
 
 }
 
+export const popraviKvarDirektor  = async (req, res)=> {
+
+    try 
+    {
+        let kvar = await Kvar.findById(req.params.id); 
+        await kvar.updateOne({$set: {'status': "Završen"} });
+
+        res.status(200).json("Kvar je popravljen!");
+    }
+    catch (err) 
+    {
+        return res.status(500).json(err);
+    }
+
+}
+
 export const odbijKvarUpravnik = async(req, res)=>{
     try
     {
         let kvar = await Kvar.findById(req.params.id);
-
         await kvar.updateOne({$set: {'status': "Odbijen"} });
 
         res.status(200).json("Problem odbijen!");

@@ -19,9 +19,7 @@ export const azurirajNalogRegKor = async (req, res, next) => {
                                                                         $set: { ime: req.body. ime,
                                                                                 prezime: req.body.prezime }});
                                                                                 
-                //console.log("id: " + req.params.id + "body " + req.body.registrovaniKorisnikId)
                 return next();
-                // return res.status(200).json("Uspešno ažuriran profil")
             }
             catch (err) 
             {
@@ -30,40 +28,6 @@ export const azurirajNalogRegKor = async (req, res, next) => {
         }
         else{
             return res.status(400).json("Netačna lozinka!")
-        if(regKor){
-            if (req.body.password == regKor.password) 
-            {
-                try 
-                {
-                    console.log("tu sam")
-                    //const salt = await bcrypt.genSalt(10);
-                    //req.body.password = await bcrypt.hash(req.body.password, salt);
-                }
-                catch (err) 
-                {
-                    return res.status(500).json(err);
-                }
-                
-                try 
-                {
-                    const user = await RegistrovaniKorisnik.findByIdAndUpdate(req.params.id, {
-                                                                            $set: { ime: req.body. ime,
-                                                                                    prezime: req.body.prezime }});
-                                                                                    
-                    console.log("id: " + req.params.id + "body " + req.body.registrovaniKorisnikId)
-                    return next();
-                    // return res.status(200).json("Uspešno ažuriran profil")
-                }
-                catch (err) 
-                {
-                    return res.status(500).json(err);
-                }
-            }
-            else{
-                return res.status(400).json("Netačna lozinka!")
-            }
-        } else{
-            return res.status(404).json("Nije pronađen odgovarajući registrovani korisnik")
         }
     }
     else {
